@@ -1,0 +1,15 @@
+set .config:version 1
+
+enum Gender (
+    male,
+    female
+)
+
+table test (
+    pid<int>,
+    name<char(20)>,
+    gender<Gender>
+)
+
+assert exists table test
+
