@@ -7,7 +7,7 @@ enum RSVFilePermEnum
 {
     FILE_PERM_READ = 1,
     FILE_PREM_WRITE = 2,
-    FILE_PERM_APPEND = 4,
+    FILE_PERM_WRITE = 4,
     FILE_PERM_DELETE = 8
 };
 

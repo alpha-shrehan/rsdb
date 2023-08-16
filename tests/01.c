@@ -19,7 +19,7 @@ void test2()
 {
     FILE *op = fopen("../../tests/test.bin", "rb");
 
-    // vfile_t *vf = rs_vmgr_vfile_newWithData("test.txt", "Hello, World!", FILE_PERM_READ);
+    // vfile_t *vf = rs_vmgr_vfile_newWithData("test.txt", "Hello, World!", FILE_PERM_READ | FILE_PERM_WRITE);
     // rs_vmgr_vfile_dump(vf, op);
 
     vfile_t *nf = rs_vmgr_vfile_read(op);

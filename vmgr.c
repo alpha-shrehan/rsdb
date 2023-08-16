@@ -31,6 +31,9 @@ rs_vmgr_vfile_dump(vfile_t *vf, FILE *f)
     if (!f)
         return RSERR_NOFILE;
     
+    if (!(vf->meta.perms & FILE_PERM_WRITE))
+        return RSERR_FILE_INVALIDPERMS;
+    
     rs_tblob_dump(vf->fname, f);
     rs_tblob_dump(vf->fcont, f);
     fwrite(&vf->meta.perms, sizeof(int), 1, f);
