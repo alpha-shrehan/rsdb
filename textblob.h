@@ -30,9 +30,11 @@ extern "C"
 {
 #endif
 
-    RS_API tblob_t *rs_tblob_new(char *, int *, size_t);
+    RS_API tblob_t *rs_tblob_new(char *k, int *v, size_t s);
     RS_API tblob_t *rs_tblob_new_fromRaw(char *);
     RS_API char *rs_tblob_decode(tblob_t *);
+    RS_API int rs_tblob_dump(tblob_t *, FILE *);
+    RS_API tblob_t *rs_tblob_read(FILE *);
 
 #ifdef __cplusplus
 }

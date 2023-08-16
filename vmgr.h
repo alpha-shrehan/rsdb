@@ -14,7 +14,7 @@ enum RSVFilePermEnum
 struct _rs_vfile_stru
 {
     tblob_t *fcont;
-    char *fname;
+    tblob_t *fname;
 
     struct
     {
@@ -23,3 +23,18 @@ struct _rs_vfile_stru
 };
 
 typedef struct _rs_vfile_stru vfile_t;
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+    RS_API vfile_t *rs_vmgr_vfile_new(void);
+    RS_API vfile_t *rs_vmgr_vfile_newWithData(char *_Name, char *_Cont, int _Perms);
+    RS_API int rs_vmgr_vfile_dump(vfile_t *, FILE *);
+    RS_API vfile_t *rs_vmgr_vfile_read(FILE *);
+    RS_API void rs_vmgr_vfile_dbgprint(vfile_t *);
+
+#ifdef __cplusplus
+}
+#endif

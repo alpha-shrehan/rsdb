@@ -107,3 +107,48 @@ void _tok_append(tblob_t *t, int val)
     t->toks = RS_Realloc(t->toks, (t->size + 1) * sizeof(int));
     t->toks[t->size++] = val;
 }
+
+RS_API int
+rs_tblob_dump(tblob_t *t, FILE *f)
+{
+    if (!f)
+        return RSERR_NOFILE;
+
+    int p_len = strlen(t->key) + 1;
+
+    fwrite(&p_len, sizeof(int), 1, f);
+    fwrite(t->key, sizeof(char), p_len, f);
+    fwrite(&t->size, sizeof(size_t), 1, f);
+    fwrite(t->toks, sizeof(int), t->size, f);
+
+    return RSERR_OK;
+}
+
+RS_API tblob_t *
+rs_tblob_read(FILE *f)
+{
+    if (!f)
+        return NULL;
+
+    tblob_t *tn = rs_tblob_new(NULL, NULL, 0);
+    size_t plen = 0;
+    char *key = NULL;
+    size_t size = 0;
+    int *toks = NULL;
+
+    fread(&plen, sizeof(size_t), 1, f);
+    key = RS_Malloc(plen * sizeof(char));
+
+    fread(key, sizeof(char), plen, f);
+
+    fread(&size, sizeof(size_t), 1, f);
+    toks = RS_Malloc(size * sizeof(int));
+
+    fread(toks, sizeof(int), size, f);
+
+    tn->key = key;
+    tn->size = size;
+    tn->toks = toks;
+
+    return tn;
+}

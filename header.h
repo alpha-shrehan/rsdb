@@ -15,3 +15,10 @@
 #define RS_API
 
 #include "mem.h"
+
+enum
+{
+    RSERR_OK,
+    RSERR_NOFILE,
+    RSERR_WRITE_ERR,
+};
