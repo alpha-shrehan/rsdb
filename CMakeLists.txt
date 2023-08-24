@@ -11,7 +11,8 @@ add_library(rsdb
     mem.h mem.c
     textblob.h textblob.c
     vmgr.h vmgr.c
-    rsdb.h rsdb.c)
+    rsdb.h rsdb.c
+    trie.h trie.c)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
